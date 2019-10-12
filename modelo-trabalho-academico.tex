@@ -1,0 +1,582 @@
+%% modelo-trabalho-academico.tex, v-1.0.0 Cedric Graebin
+%%
+%% Based on the original work by the abnTeX2 group
+%% Copyright 2012-2018 by abnTeX2 group at http://www.abntex.net.br/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is Cedric Graebin.
+%% Further information are available on 
+%%   http://github.com/cedricgr/abntex2ufrrj
+%%
+%% This work consists of the files abntex2ufrrj.sty, modelo-trabalho-academico.tex and license.txt
+%%
+%% WARNING: as part of the UFRRJ's Thesis and Dissertation Style Guide, the University's
+%% logomark must be included on the document's cover. This logomark (logomarca.jpg) 
+%% is (c) UFRRJ and it is included as a courtesy to avoid compile errors
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openany,			% capítulos começam em qualquer página (não insere página vazia cf. Manual de Teses)
+	twoside,			% Para impressão em frente/verso
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	%french,				% idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{times}				% Usa a fonte Adobe Times PostScript T1 (cf. Manual de Teses)		
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{cmap}				% Torna o texto e conteúdo PDF selecionável e copiável
+\usepackage{microtype} 			% para melhorias de justificação
+
+
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2ufrrj
+% ---
+\usepackage{lipsum}				% para geração de dummy text. Esta linha pode ser comentada.
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT usando BibTeX
+
+% ---
+% Figuras
+% ---
+\usepackage{graphicx}			% Inclusão de gráficos
+
+% pacotes adicionais como sugestão:
+% \usepackage{todonotes} 		% Para comentários no PDF
+% \usepackage{pdfx}				% Para tornar o PDF compatível com os padrões PDF/X ou PDF/A. Requer arquivo XMPDATA
+
+% configurações para a UFRRJ
+\usepackage{abntex2ufrrj}
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Insira o título do Trabalho aqui}
+\autor{Insira nome do autor}
+\local{Seropédica}
+\data{07 de Outubro de 2019} 			% altere a data para o dia da defesa
+\orientador{Nome do Orientador}
+\coorientador{Nome do Co-Orientador} 	%deixe vazio para que não seja impresso
+\instituicao{%
+  Universidade Federal Rural do Rio de Janeiro - UFRRJ
+  \par
+  Instituto de Química
+  \par
+  Programa de Pós-Graduação em Química}
+\tipotrabalho{Tese}
+% comandos personalizados abntex2-ufrrj
+\instituto{Instituto de Química}
+\programapg{Curso de Pós-Graduação em Química}
+
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Tese submetida como requisito parcial para a obtenção do grau de Doutor em Química no Curso de Pós-Graduação em Química, Área de Concentração em Química Orgânica}
+%\ preambulo{Dissertação submetida como requisito parcial para a obtenção do grau de Mestre em Química no Curso de Pós-Graduação em Química, Área de Concentração em Química Orgânica}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF. Altere o PDFKEYWORDS
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+    
+% Espaçamento de linhas conforme Manual de Teses da UFRRJ
+\OnehalfSpacing 	% para versão preliminar (banca)
+% \SingleSpacing 	% para versão final p/ biblioteca    
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+\pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+
+% Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
+% catalogação-na-publicação''. Você pode utilizar este modelo como referência. 
+% Porém, provavelmente a biblioteca da sua universidade lhe fornecerá um PDF
+% com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
+% com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
+% o conteúdo de implementação deste arquivo pelo comando abaixo:
+%
+% \begin{fichacatalografica}
+%     \includepdf{fig_ficha_catalografica.pdf}
+% \end{fichacatalografica}
+
+\begin{fichacatalografica}
+	\sffamily
+	\vspace*{\fill}					% Posição vertical
+	\begin{center}					% Minipage Centralizado
+	\fbox{\begin{minipage}[c][8cm]{13.5cm}		% Largura
+	\small
+	\imprimirautor
+	%Sobrenome, Nome do autor
+	
+	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+	\imprimirlocal, \imprimirdata-
+	
+	\hspace{0.5cm} \thelastpage p. : il. (algumas color.) ; 30 cm.\\
+	
+	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+	
+	\hspace{0.5cm}
+	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+	\imprimirdata.}\\
+	
+	\hspace{0.5cm}
+		1. Palavra-chave1.
+		2. Palavra-chave2.
+		2. Palavra-chave3.
+		I. Orientador.
+		II. Universidade xxx.
+		III. Faculdade de xxx.
+		IV. Título 			
+	\end{minipage}}
+	\end{center}
+    \vspace*{\fill}	
+\end{fichacatalografica}
+% ---
+
+% ---
+% Inserir errata
+% ---
+%\begin{errata}
+%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+%
+%\vspace{\onelineskip}
+%
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
+%reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
+%rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
+%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
+%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+%
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+%  \hline
+%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+%    \hline
+%    1 & 10 & auto-conclavo & autoconclavo\\
+%   \hline
+%\end{tabular}
+%\end{table}
+%
+%\end{errata}
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+% imagem da página assinada pela banca com o comando abaixo:
+%
+% \begin{folhadeaprovacao}
+% \includepdf{folhadeaprovacao_final.pdf}
+% \end{folhadeaprovacao}
+%
+\begin{folhadeaprovacao}
+    % --
+    % A folha de aprovação foi adequada ao Manual de Teses da UFRRJ
+    % --
+    
+    \noindent \textbf{UNIVERSIDADE FEDERAL RURAL DO RIO DE JANEIRO \\
+    \MakeTextUppercase{\imprimirinstituto} \\
+    \MakeTextUppercase{\imprimirprogramapg}}
+
+    \vfill
+      
+    \begin{center}
+        \textbf{\MakeTextUppercase{\imprimirautor}}
+    \end{center}
+
+    \vfill
+    
+    \noindent \imprimirpreambulo
+       
+    \noindent \imprimirtipotrabalho{} aprovada em 24 de novembro de 2012.
+
+    % --
+    % Retire os comentários para acrescentar mais assinaturas abaixo. 
+    % Segundo o Manual de Teses da UFRRJ, a ordem é
+    % Orientador, Membros Externos e Internos Titulares, Membros Suplentes
+    %--
+    % Nome Completo. Título (Dr. ou Ph.D.). Sigla da Instituição de Origem. 
+    % Abaixo, entre parênteses, (Orientador), (Membro Externo) ou (Membro Interno)
+    %-- 
+    
+    \assinatura{\imprimirorientador \\ (Orientador)} 
+    \assinatura{Professor \\ (Convidado 1)}
+    \assinatura{Professor \\ (Convidado 2)}
+    %\assinatura{Professor \\ (Convidado 3)}
+    %\assinatura{Professor \\ (Convidado 4)}
+    
+    \vfill
+        
+\end{folhadeaprovacao}
+% ---
+
+% ---
+% Dedicatória
+% ---
+\begin{dedicatoria}
+   \vspace*{\fill}
+   \centering
+   \noindent
+   \textit{ Insira texto da dedicatória aqui.} \vspace*{\fill}
+\end{dedicatoria}
+% ---
+
+% ---
+% Agradecimentos
+% ---
+\begin{agradecimentos}
+Insira os agradecimentos aqui.
+
+\end{agradecimentos}
+% ---
+
+% ---
+% Epígrafe
+% ---
+%\begin{epigrafe}
+%    \vspace*{\fill}
+%	\begin{flushright}
+%		\textit{``Não vos amoldeis às estruturas deste mundo, \\
+%		mas transformai-vos pela renovação da mente, \\
+%		a fim de distinguir qual é a vontade de Deus: \\
+%		o que é bom, o que Lhe é agradável, o que é perfeito.\\
+%		(Bíblia Sagrada, Romanos 12, 2)}
+%	\end{flushright}
+%\end{epigrafe}
+% ---
+
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+% altere conforme necessidade, especialmente ano e número de páginas    
+SOBRENOME, Nomes do Autor. \textbf{\imprimirtitulo}.
+2000. 128p \imprimirtipotrabalho{} (Mestrado em Agronomia, Ciência do Solo). \imprimirinstituto, Departamento de X, Universidade Federal Rural do Rio de Janeiro, Seropédica, RJ, 2000.
+
+% O resumo propriamente dito vai aqui.
+Insira o texto do resumo aqui.
+
+\textbf{Palavras-chave}: latex. abntex. editoração de texto.
+\end{resumo}
+
+% resumo em inglês
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+   SURNAME, Author Name. \textbf{Title (in english)}. 2000. 128p. Thesis (Graduate Program). \imprimirinstituto, Departamento de X, Universidade Federal Rural do Rio de Janeiro, Seropédica, RJ, 2000.
+   
+   Insert English Abstract here.
+
+   \vspace{\onelineskip}
+ 
+   \noindent 
+   \textbf{Keywords}: latex. abntex. text editoration.
+ \end{otherlanguage*}
+\end{resumo}
+
+% resumo em francês 
+%\begin{resumo}[Résumé]
+% \begin{otherlanguage*}{french}
+%    Il s'agit d'un résumé en français.
+% 
+%   \textbf{Mots-clés}: latex. abntex. publication de textes.
+% \end{otherlanguage*}
+%\end{resumo}
+
+% resumo em espanhol
+%\begin{resumo}[Resumen]
+% \begin{otherlanguage*}{spanish}
+%   Este es el resumen en español.
+%  
+%   \textbf{Palabras clave}: latex. abntex. publicación de textos.
+% \end{otherlanguage*}
+%\end{resumo}
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de esquemas
+% ---
+\pdfbookmark[0]{\listofesquemasname}{loe}
+\listofesquemas*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de quadros. Retire os comentários deste trecho caso use quadros em seu trabalho acadêmico.
+% ---
+%\pdfbookmark[0]{\listofquadrosname}{loq}
+%\listofquadros*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+\begin{siglas}
+  \item[ABNT] Associação Brasileira de Normas Técnicas
+\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+%\begin{simbolos}
+%  \item[$ \Gamma $] Letra grega Gama
+%  \item[$ \Lambda $] Lambda
+%  \item[$ \zeta $] Letra grega minúscula zeta
+%  \item[$ \in $] Pertence
+%\end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+\pagestyle{plain}
+\setcounter{page}{1} % de acordo com o Manual de Teses, a primeira página da Introdução é a página 1
+
+% ----------------------------------------------------------
+% Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
+% ----------------------------------------------------------
+\chapter{Introdução}
+
+
+% ----------------------------------------------------------
+
+
+
+% ---
+% Capitulo com exemplos de comandos inseridos de arquivo externo 
+% ---
+%\include{abntex2-modelo-include-comandos}
+% ---
+
+\chapter{Revisão da Literatura}\label{cap_trabalho_academico}
+
+%\begin{figure}
+%    \includegraphics[width=3cm]{logomarca.jpg}
+%    \caption{Uma figura} \label{fig:logomarca-ufrrj}
+%\end{figure}
+
+
+\chapter{Objetivos}
+
+\chapter{Material e Métodos}
+
+\chapter{Resultados e Discussão}
+
+% ----------------------------------------------------------
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaço de parte no Sumário
+% ----------------------------------------------------------
+\phantompart
+
+% ---
+% Conclusão
+% ---
+\chapter{Conclusão}
+% ---
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas. Insira o arquivo .bib aqui
+% ----------------------------------------------------------
+%\bibliography{abntex2-modelo-references}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+\begin{anexosenv}
+
+% Imprime uma página indicando o início dos anexos
+\partanexos
+
+% ---
+\chapter{Anexo 1}
+% ---
+
+\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+%\phantompart
+%\printindex
+%---------------------------------------------------------------------
+
+\end{document}

@@ -1,0 +1,232 @@
+%% abntex2ufrrj.sty, v-1.0.0 Cedric Graebin
+%%
+%% Based on the original work by the abnTeX2 group
+%% Copyright 2012-2018 by abnTeX2 group at http://www.abntex.net.br/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is Cedric Graebin, cedric@ufrrj.br
+%%
+%% This work consists of the files abntex2ufrrj.sty, modelo-trabalho-academico.tex and license.txt
+%%
+%% Further information about abnTeX2 are available on https://github.com/abntex/abntex2
+%% Further information about this customization are available on https://github.com/cedricgr/abntex2ufrrj
+
+% ---
+% INICIO DAS CUSTOMIZACOES PARA A UNIVERSIDADE UFRRJ
+% ---
+
+% ProvidesPackage é obrigatório
+\ProvidesPackage{abntex2ufrrj}[2019/10/12 Criacao desta customizacao do abnTeX2 para o Manual de Teses da UFRRJ]
+
+% alterando o título das Seções e listas
+\addto\captionsbrazil{% portugues-brasil
+	%% ajusta nomes padroes do babel
+	\renewcommand{\bibname}{Refer\^encias bibliogr\'aficas}
+	\renewcommand{\indexname}{\'Indice}
+	\renewcommand{\listfigurename}{Lista de figuras}
+	\renewcommand{\listtablename}{Lista de tabelas}
+	%% ajusta nomes usados com a macro \autoref
+	\renewcommand{\pageautorefname}{p\'agina}
+	\renewcommand{\sectionautorefname}{se{\c c}\~ao}
+	\renewcommand{\subsectionautorefname}{subse{\c c}\~ao}
+	\renewcommand{\subsubsectionautorefname}{subse{\c c}\~ao}
+	\renewcommand{\paragraphautorefname}{subse{\c c}\~ao}
+}
+
+% alterando tamanho dos títulos de capítulos, seções e outras partes do documento
+% No Manual de Teses, todos os títulos tem o tamanho normal de fonte, apenas são negritos
+
+\renewcommand{\ABNTEXchapterfont}{\rmfamily\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+
+\renewcommand{\ABNTEXpartfont}{\ABNTEXchapterfont}
+\renewcommand{\ABNTEXpartfontsize}{\ABNTEXchapterfontsize}
+
+\renewcommand{\ABNTEXsectionfont}{\ABNTEXchapterfont}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+
+\renewcommand{\ABNTEXsubsectionfont}{\ABNTEXsectionfont}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+
+% Comandos de dados - Instituto
+\providecommand{\imprimirinstituto}{}
+\newcommand{\instituto}[1]{\renewcommand{\imprimirinstituto}{#1}}
+
+% Comandos de dados - Programa de PPG
+\providecommand{\imprimirprogramapg}{}
+\newcommand{\programapg}[1]{\renewcommand{\imprimirprogramapg}{#1}}
+
+% alterando a capa
+\renewcommand{\imprimircapa}{%
+	\begin{capa}%  
+		\center
+		\bfseries\ABNTEXchapterfont\large UNIVERSIDADE FEDERAL RURAL DO RIO DE JANEIRO
+		
+		\large\MakeTextUppercase{\imprimirinstituto}
+		
+		\large\MakeTextUppercase{\imprimirprogramapg}
+		
+		\vfill
+		
+		\Large\MakeTextUppercase{\imprimirtipotrabalho}
+		
+		\vspace*{54pt}
+		
+		%\vfill
+		\begin{center}
+			\ABNTEXchapterfont\bfseries\LARGE\imprimirtitulo
+		\end{center}
+		\vfill
+		
+		{\ABNTEXchapterfont\LARGE\imprimirautor}
+		
+		%\large\imprimirlocal
+		
+		\vfill
+		
+		\Large\imprimirdata
+		
+		%\vspace*{1cm}
+	\end{capa}
+}
+
+
+% alterando a folha de rosto 
+
+\makeatletter
+
+\renewcommand{\folhaderostocontent}{
+	\begin{center} %
+		% linha comentada enquanto há erro no MikTeX
+		\begin{figure*}
+            \centering
+			\includegraphics[width=3cm]{logomarca.jpg}
+		\end{figure*}
+		{\ABNTEXchapterfont\bfseries\large UNIVERSIDADE FEDERAL RURAL DO RIO DE JANEIRO  %
+			
+			\MakeTextUppercase{\imprimirinstituto} %
+			
+			\MakeTextUppercase{\imprimirprogramapg}} %
+		
+		\vfill
+		
+		\begin{center}
+			\ABNTEXchapterfont\bfseries\Large\MakeTextUppercase{\imprimirtitulo}
+		\end{center}
+		
+		\vfill
+		
+		{\ABNTEXchapterfont\bfseries\Large\MakeTextUppercase{\imprimirautor}}
+		
+		\vspace*{\fill}
+		
+		%\vspace*{\fill}
+		
+		{\large \textit{Sob Orientação de}\\ \textbf{\imprimirorientador}\par}
+		
+		\abntex@ifnotempty{\imprimircoorientador}{%
+			{\large \textit{E Co-Orientação de}\\ \textbf{\imprimircoorientador}\par}%
+		}%
+		
+		\vspace*{\fill}
+		
+		\abntex@ifnotempty{\imprimirpreambulo}{%
+			\hspace{.45\textwidth}
+			\begin{minipage}{.5\textwidth}
+				\SingleSpacing
+				\imprimirpreambulo
+			\end{minipage}%
+			%\vspace*{\fill}
+		}%
+		
+		\vspace*{\fill}
+		
+		%{\abntex@ifnotempty{\imprimirinstituicao}{\imprimirinstituicao\vspace*{\fill}}}
+		
+		{\normalsize\imprimirlocal}
+		
+		\par
+		
+		{\normalsize\imprimirdata}
+		\vspace*{1cm}
+	\end{center}
+}
+
+\makeatother
+
+% ---
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+%
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{quadro}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
+% ---
+
+% Possibilita a criação de Esquemas e Lista de Esquemas.
+% baseado no código de Quadros acima
+\newcommand{\esquemaname}{Esquema}
+\newcommand{\listofesquemasname}{Lista de esquemas}
+
+\newfloat[chapter]{esquema}{loe}{\esquemaname}
+\newlistof{listofesquemas}{loe}{\listofesquemasname}
+\newlistentry{esquema}{loe}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{esquema}{\centering}
+\counterwithout{esquema}{chapter}
+\renewcommand{\cftesquemaname}{\esquemaname\space} 
+\renewcommand*{\cftesquemaaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{esquema}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
+
+%% criar um novo estilo de cabeçalhos e rodapés
+\makepagestyle{ufrrj}
+\makeevenhead{ufrrj}{}{}{}
+\makeoddhead{ufrrj}{}{}{}
+\makeevenfoot{ufrrj}{\ABNTEXfontereduzida\thepage}{}{\ABNTEXfontereduzida\textit\leftmark}
+\makeoddfoot{ufrrj}{\ABNTEXfontereduzida\textit\rightmark}{}{\ABNTEXfontereduzida\thepage}
+
+% altera o estilo de cabeçalhos e rodapés para a primeira página dos capítulos
+\makepagestyle{abntchapfirst}
+\makeevenfoot{abntchapfirst}{\ABNTEXfontereduzida\thepage}{}{}
+\makeoddfoot{abntchapfirst}{}{}{\ABNTEXfontereduzida\thepage}
+%\makefootrule{ufrrj}{\textwidth}{\normalrulethickness}
+
+% ---
+% Posiciona figuras e tabelas no topo da página quando adicionadas sozinhas
+% em um página em branco. Ver https://github.com/abntex/abntex2/issues/170
+\makeatletter
+\setlength{\@fptop}{1cm} % Set distance from top of page to first float
+\makeatother
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.25cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
