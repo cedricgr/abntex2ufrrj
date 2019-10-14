@@ -15,6 +15,7 @@ Customizações do `abnTeX2` para a Universidade UFRRJ
 ## O que virá em versões futuras
 * Opcionalmente, a possibilidade de numeração em algarismos romanos na parte pré-textual
 * A inclusão de uma opção `banca` e `biblioteca` para ajustar automaticamente o espaçamento entre linhas nas versões correspondentes
+* Modelos adicionais para a Tese/Dissertação em *Capítulos* e como *Narrativa em Capítulos*, incluindo gerenciamento de múltiplas referências bibliográficas no documento.
 
 ## Como usar
 1. Baixe os arquivos `abntex2ufrrj.sty`, `modelo-trabalho-academico.tex` e `logomarca.jpg`.
