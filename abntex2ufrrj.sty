@@ -1,4 +1,4 @@
-%% abntex2ufrrj.sty, v-1.0.0 Cedric Graebin
+%% abntex2ufrrj.sty, v-1.1.0 Cedric Graebin
 %%
 %% Based on the original work by the abnTeX2 group
 %% Copyright 2012-2018 by abnTeX2 group at http://www.abntex.net.br/ 
@@ -27,7 +27,26 @@
 % ProvidesPackage é obrigatório
 \ProvidesPackage{abntex2ufrrj}[2019/10/12 Criacao desta customizacao do abnTeX2 para o Manual de Teses da UFRRJ]
 
+% ---
+% Processa as opções do pacote (incluído na versão 1.1.0)
+% ---
+\providecommand{\DefineLineSpacing}{\OnehalfSpacing}
+\DeclareOption{versao=banca}{
+	\renewcommand{\DefineLineSpacing}{\OnehalfSpacing}
+}
+\DeclareOption{versao=final}{
+	\renewcommand{\DefineLineSpacing}{\SingleSpacing}
+}
+
+\ExecuteOptions{versao=banca} 				% versão=banca (\OnehalfSpacing) é a opção padrão
+
+\ProcessOptions\relax						% processa as opções e segue adiante
+
+\AtBeginDocument{\DefineLineSpacing}		% Define o espaçamento de linhas previsto ao iniciar o documento
+
+% ---
 % alterando o título das Seções e listas
+% ---
 \addto\captionsbrazil{% portugues-brasil
 	%% ajusta nomes padroes do babel
 	\renewcommand{\bibname}{Refer\^encias bibliogr\'aficas}
@@ -49,7 +68,7 @@
 \renewcommand{\ABNTEXchapterfontsize}{\normalsize}
 
 \renewcommand{\ABNTEXpartfont}{\ABNTEXchapterfont}
-\renewcommand{\ABNTEXpartfontsize}{\Large}
+\renewcommand{\ABNTEXpartfontsize}{\LARGE}
 
 \renewcommand{\ABNTEXsectionfont}{\ABNTEXchapterfont}
 \renewcommand{\ABNTEXsectionfontsize}{\normalsize}
@@ -57,6 +76,7 @@
 \renewcommand{\ABNTEXsubsectionfont}{\ABNTEXsectionfont}
 \renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
 
+% ---
 % Comandos de dados - Instituto
 \providecommand{\imprimirinstituto}{}
 \newcommand{\instituto}[1]{\renewcommand{\imprimirinstituto}{#1}}
@@ -65,6 +85,7 @@
 \providecommand{\imprimirprogramapg}{}
 \newcommand{\programapg}[1]{\renewcommand{\imprimirprogramapg}{#1}}
 
+% ---
 % alterando a capa
 \renewcommand{\imprimircapa}{%
 	\begin{capa}%  
@@ -100,6 +121,7 @@
 }
 
 
+% ---
 % alterando a folha de rosto 
 
 \makeatletter
@@ -200,12 +222,12 @@
 
 \setfloatlocations{esquema}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
 
-%% criar um novo estilo de cabeçalhos e rodapés
-\makepagestyle{ufrrj}
-\makeevenhead{ufrrj}{}{}{}
-\makeoddhead{ufrrj}{}{}{}
-\makeevenfoot{ufrrj}{\ABNTEXfontereduzida\thepage}{}{\ABNTEXfontereduzida\textit\leftmark}
-\makeoddfoot{ufrrj}{\ABNTEXfontereduzida\textit\rightmark}{}{\ABNTEXfontereduzida\thepage}
+%% altera o estilo de cabeçalhos e rodapés - c/ correção de falha da versão 1.0.0
+\makepagestyle{abntheadings}
+\makeevenhead{abntheadings}{}{}{}
+\makeoddhead{abntheadings}{}{}{}
+\makeevenfoot{abntheadings}{\ABNTEXfontereduzida\thepage}{}{}
+\makeoddfoot{abntheadings}{}{}{\ABNTEXfontereduzida\thepage}
 
 % altera o estilo de cabeçalhos e rodapés para a primeira página dos capítulos
 \makepagestyle{abntchapfirst}
@@ -230,3 +252,6 @@
 
 % Controle do espaçamento entre um parágrafo e outro:
 \setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+%termina o processamento do pacote
+\endinput 

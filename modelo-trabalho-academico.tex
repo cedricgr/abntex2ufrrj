@@ -1,4 +1,4 @@
-%% modelo-trabalho-academico.tex, v-1.0.0 Cedric Graebin
+%% modelo-trabalho-academico.tex, v-1.1.0 Cedric Graebin
 %%
 %% Based on the original work by the abnTeX2 group
 %% Copyright 2012-2018 by abnTeX2 group at http://www.abntex.net.br/ 
@@ -60,9 +60,6 @@
 \usepackage{color}				% Controle das cores
 \usepackage{cmap}				% Torna o texto e conteúdo PDF selecionável e copiável
 \usepackage{microtype} 			% para melhorias de justificação
-
-
-% ---
 		
 % ---
 % Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2ufrrj
@@ -84,9 +81,10 @@
 % pacotes adicionais como sugestão:
 % \usepackage{todonotes} 		% Para comentários no PDF
 % \usepackage{pdfx}				% Para tornar o PDF compatível com os padrões PDF/X ou PDF/A. Requer arquivo XMPDATA
+% \usepackage{lineno}			% para linhas numeradas (bom para revisão com orientadores)
 
 % configurações para a UFRRJ
-\usepackage{abntex2ufrrj}
+\usepackage[versao=banca]{abntex2ufrrj}
 
 % --- 
 % CONFIGURAÇÕES DE PACOTES
@@ -170,10 +168,6 @@
 % Início do documento
 % ----
 \begin{document}
-    
-% Espaçamento de linhas conforme Manual de Teses da UFRRJ
-\OnehalfSpacing 	% para versão preliminar (banca)
-% \SingleSpacing 	% para versão final p/ biblioteca    
 
 % Seleciona o idioma do documento (conforme pacotes do babel)
 %\selectlanguage{english}
@@ -185,7 +179,7 @@
 % ----------------------------------------------------------
 % ELEMENTOS PRÉ-TEXTUAIS
 % ----------------------------------------------------------
-\pretextual
+\pretextual							% equivalente ao \mainmatter do pacote Memoir
 
 % ---
 % Capa
@@ -483,14 +477,13 @@ Insira o texto do resumo aqui.
 % ELEMENTOS TEXTUAIS
 % ----------------------------------------------------------
 \textual
-\pagestyle{plain}
 \setcounter{page}{1} % de acordo com o Manual de Teses, a primeira página da Introdução é a página 1
 
 % ----------------------------------------------------------
 % Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
 % ----------------------------------------------------------
 \chapter{Introdução}
-
+\lipsum[1-7]
 
 % ----------------------------------------------------------
 
