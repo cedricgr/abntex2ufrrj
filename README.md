@@ -1,8 +1,8 @@
 # abntex2ufrrj
-Customizações do `abnTeX2` para a Universidade UFRRJ
+Customizações do `abnTeX2` para a Universidade UFRRJ 
 
-## Versão 1.0.0 (12 de outubro de 2019)
-* Primeira versão publicada
+## Versão atual: 1.0.0 (12 de outubro de 2019)
+* Primeira versão publicada (consulte o [CHANGELOG](CHANGELOG.md) para detalhes)
 
 ## O que há no `abntex2ufrrj`?
 * O `abntex2ufrrj` existe por um motivo: *embora o Manual de Teses da UFRRJ diga que siga as normas da ABNT, ele não segue*
